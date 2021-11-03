@@ -32,7 +32,7 @@ public class UnitTests {
     public void testCanBetMethodWhenMinimumIsNegative(){
         betting1=new Betting(mock,-10);
         betting1.balance=7;
-        assertTrue(betting.canBet(6));
+        assertTrue(betting1.canBet(6));
     }
     @Test
     public void testCanBetMethodWhenAmntandBalanceAreEqualandMinimumIsZero(){
@@ -100,14 +100,14 @@ public class UnitTests {
     }
 
     @Test
-    public void testBetOnProbabilityReturnsCorrectAmountByWin(){
+    public void testBetOnProbabilityReturnsCorrectAmountByWin()throws ProbablityIsNotBetweenZeroAndOneException{
         betting.balance=100;
         mock.setRandom(.3);
         assertEquals(15, betting.betOnProbability(10,.4),.01);
 
     }
     @Test
-    public void testBetOnProbabilityAddsCorrectAmountToBalanceByWin(){
+    public void testBetOnProbabilityAddsCorrectAmountToBalanceByWin()throws ProbablityIsNotBetweenZeroAndOneException{
         betting.balance=100;
         mock.setRandom(.3);
        betting.betOnProbability(10,.4);
@@ -115,7 +115,7 @@ public class UnitTests {
 
     }
     @Test
-    public void testBetOnProbabilityWhenYouLose(){
+    public void testBetOnProbabilityWhenYouLose()throws ProbablityIsNotBetweenZeroAndOneException{
         betting.balance=100;
         mock.setRandom(.5);
         assertEquals(-10, betting.betOnProbability(10,.4),.01);
